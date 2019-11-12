@@ -4,4 +4,6 @@ import com.codegym.model.Role;
 
 public interface RoleService {
     Role findByName(String name);
+
+    Role findById(Integer id);
 }
