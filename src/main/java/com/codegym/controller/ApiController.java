@@ -45,6 +45,17 @@ public class ApiController {
         }
         return new ResponseEntity<User>(footballPlayers, HttpStatus.OK);
     }
+//
+//    @ResponseBody
+//    @RequestMapping(value = "/api/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<User> listMember(@PathVariable int id) {
+//        System.out.println("ok");
+//        User footballPlayers = userService.findById(id);
+//        if (footballPlayers==null) {
+//            return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+//        }
+//        return new ResponseEntity<User>(footballPlayers, HttpStatus.OK);
+//    }
 
     @ResponseBody
     @RequestMapping(value = "/api/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
