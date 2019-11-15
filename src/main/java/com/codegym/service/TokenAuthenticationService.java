@@ -1,6 +1,7 @@
 package com.codegym.service;
 
 
+import com.codegym.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -28,17 +29,20 @@ public class TokenAuthenticationService {
 
     static final String HEADER_STRING = "Authorization";
 
-    public static void addAuthentication(HttpServletResponse res, String username) throws IOException {
-        String JWT = Jwts.builder().setSubject(username)
+    public static void addAuthentication(HttpServletResponse res, User user) throws IOException {
+        String JWT = Jwts.builder().setSubject(user.getEmail())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET).compact();
-
+//        String getId = (String)user.getId());
         // Nên trả token dạng json thay vì trong header
         // Có thể trả thêm nhiều data như refrestToken, thông tin user login như name, email, bithday, ... (không cần gọi thêm request)
         //res.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + JWT);
-
         Map<String, String> tokenMap = new HashMap<String, String>();
         tokenMap.put("token", JWT);
+        tokenMap.put("firstName", user.getFirstName());
+        tokenMap.put("role", user.getRole().getName());
+//        tokenMap.put("email", user.getEmail());
+//        tokenMap.put("id", getId);
 
         res.setStatus(HttpStatus.OK.value());
         res.setContentType(MediaType.APPLICATION_JSON_VALUE);

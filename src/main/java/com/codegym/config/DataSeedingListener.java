@@ -42,6 +42,10 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
         // Admin account
         if (userRepository.findByEmail("admin@gmail.com") == null) {
             User admin = new User();
+            admin.setFirstName("Nguyen");
+            admin.setLastName("Ngoc");
+            admin.setAddress("HN");
+            admin.setPhone(123456789);
             admin.setEmail("admin@gmail.com");
             admin.setPassword(passwordEncoder.encode("123456"));
             admin.setRole(roleRepository.findByName("ROLE_ADMIN"));

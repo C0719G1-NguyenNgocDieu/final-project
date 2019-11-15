@@ -1,7 +1,6 @@
 package com.codegym.model;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;

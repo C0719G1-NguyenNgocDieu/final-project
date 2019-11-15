@@ -1,7 +1,5 @@
 package com.codegym.controller;
 
-
-import com.codegym.model.Role;
 import com.codegym.model.User;
 import com.codegym.service.RoleService;
 import com.codegym.service.UserService;
@@ -10,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,14 +36,30 @@ public class ApiController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/api/{email}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> listMember(@PathVariable String email) {
+        System.out.println("ok");
+        User footballPlayers = userService.findByName(email);
+        if (footballPlayers==null) {
+            return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<User>(footballPlayers, HttpStatus.OK);
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/api/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addUser(@RequestBody User user) {
         System.out.println("ok");
         User user1 = new User();
         if (userService.findByName(user.getEmail()) == null) {
+            user1.setFirstName(user.getFirstName());
+            user1.setLastName(user.getLastName());
+            user1.setAddress(user.getAddress());
+            user1.setPhone(user.getPhone());
             user1.setEmail(user.getEmail());
             user1.setPassword(passwordEncoder.encode(user.getPassword()));
             user1.setRole(user.getRole());
+//            user1.setRole(roleService.findByName(user.getRole().getName()));
             userService.save(user1);
             return new ResponseEntity<Void>(HttpStatus.OK);
         }
@@ -84,8 +97,6 @@ public class ApiController {
         originUser.setLastName(user.getLastName());
         originUser.setAddress(user.getAddress());
         originUser.setPhone(user.getPhone());
-
-
 
         userService.save(originUser);
         return new ResponseEntity<User>(originUser, HttpStatus.OK);
