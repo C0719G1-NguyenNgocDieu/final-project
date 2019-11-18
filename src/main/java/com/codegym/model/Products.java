@@ -13,11 +13,20 @@ public class Products {
     @JoinColumn(name = "manufacturer_id")
     private String manufacturer;
 
+    private String nameProduct;
     private String configProduct;
     private Long priceProduct;
     private Long amountProduct;
     private String descriptionProduct;
     private String imageProduct;
+
+    public String getNameProduct() {
+        return nameProduct;
+    }
+
+    public void setNameProduct(String nameProduct) {
+        this.nameProduct = nameProduct;
+    }
 
     public String getManufacturer() {
         return manufacturer;
