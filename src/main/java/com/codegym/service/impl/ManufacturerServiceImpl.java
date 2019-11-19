@@ -16,7 +16,7 @@ public class ManufacturerServiceImpl implements ManufacturerService {
 
     @Override
     public Manufacturer save(Manufacturer manufacturer) {
-        return manufacturerRepository.save(manufacturer) l;
+        return manufacturerRepository.save(manufacturer);
     }
 
     @Override
