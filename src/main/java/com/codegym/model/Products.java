@@ -10,18 +10,18 @@ public class Products {
     @Column(name = "Id", nullable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "manufacturer_id")
-    private Manufacturer manufacturer;
-
+    @Column(name = "manufacturer")
+    private String manufacturer;
     @Column(name = "Name")
     private String nameProduct;
     @Column(name = "Config")
     private String configProduct;
+    @Column(name = "Model")
+    private  String model;
     @Column(name = "Price")
     private Long priceProduct;
     @Column(name = "Amount")
-    private Long amountProduct;
+    private Long amount;
     @Column(name = "Description")
     private String descriptionProduct;
     @Column(name = "Image")
@@ -33,14 +33,6 @@ public class Products {
 
     public void setNameProduct(String nameProduct) {
         this.nameProduct = nameProduct;
-    }
-
-    public Manufacturer getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(Manufacturer manufacturer) {
-        this.manufacturer = manufacturer;
     }
 
     public String getConfigProduct() {
@@ -59,13 +51,6 @@ public class Products {
         this.priceProduct = priceProduct;
     }
 
-    public Long getAmountProduct() {
-        return amountProduct;
-    }
-
-    public void setAmountProduct(Long amountProduct) {
-        this.amountProduct = amountProduct;
-    }
 
     public String getDescriptionProduct() {
         return descriptionProduct;
@@ -81,5 +66,29 @@ public class Products {
 
     public void setImageProduct(String imageProduct) {
         this.imageProduct = imageProduct;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public Long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
     }
 }

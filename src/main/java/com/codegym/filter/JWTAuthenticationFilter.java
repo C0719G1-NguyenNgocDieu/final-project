@@ -28,5 +28,5 @@ public class JWTAuthenticationFilter extends GenericFilterBean {
 
         filterChain.doFilter(servletRequest, servletResponse);
     }
-
+//getprinciable
 }

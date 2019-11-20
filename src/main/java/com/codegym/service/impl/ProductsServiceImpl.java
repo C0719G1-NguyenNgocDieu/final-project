@@ -1,14 +1,16 @@
 package com.codegym.service.impl;
 
-import com.codegym.model.Manufacturer;
 import com.codegym.model.Products;
 import com.codegym.repository.ProductsRepository;
 import com.codegym.service.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public class ProductsServiceImpl implements ProductsService {
     @Autowired
     private ProductsRepository productsRepository;
+
 
     @Override
     public Products findById(Long id) {
@@ -16,18 +18,8 @@ public class ProductsServiceImpl implements ProductsService {
     }
 
     @Override
-    public Products findByNameProduct(String name) {
-        return productsRepository.findByNameProduct(name);
-    }
-
-    @Override
-    public Iterable<Products> findAllByPrice(Long price) {
-        return productsRepository.findAllByPriceProduct(price);
-    }
-
-    @Override
-    public Iterable<Products> findAllByManufacturer(Manufacturer manufacturer) {
-        return productsRepository.findAllByManufacturer(manufacturer);
+    public Page<Products> findByAll(Pageable pageable) {
+        return productsRepository.findAll(pageable);
     }
 
     @Override

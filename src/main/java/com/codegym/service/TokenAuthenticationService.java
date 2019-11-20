@@ -1,6 +1,6 @@
 package com.codegym.service;
 
-
+import com.codegym.model.Role;
 import com.codegym.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
@@ -9,7 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -30,6 +31,13 @@ public class TokenAuthenticationService {
     static final String HEADER_STRING = "Authorization";
 
     public static void addAuthentication(HttpServletResponse res, User user) throws IOException {
+        // get role
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if (principal instanceof User) {
+//            String roles = ((User) principal).getRole().getName();
+//            String email=((User)principal).getEmail();
+//        }
+
         String JWT = Jwts.builder().setSubject(user.getEmail())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET).compact();
@@ -55,7 +63,7 @@ public class TokenAuthenticationService {
         out.print(objectMapper.writeValueAsString(tokenMap));
         out.flush();
     }
-
+//kiem tra token
     public static Authentication getAuthentication(HttpServletRequest request) {
         String token = request.getHeader(HEADER_STRING);
         if (token != null) {
@@ -67,5 +75,5 @@ public class TokenAuthenticationService {
         }
         return null;
     }
-
+//securityContxHorder
 }

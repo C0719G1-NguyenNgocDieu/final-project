@@ -21,9 +21,6 @@ public class ApiController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private RoleService roleService;
-
     @ResponseBody
     @RequestMapping(value = "/api", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<User>> listMember() {
@@ -45,17 +42,6 @@ public class ApiController {
         }
         return new ResponseEntity<User>(footballPlayers, HttpStatus.OK);
     }
-//
-//    @ResponseBody
-//    @RequestMapping(value = "/api/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<User> listMember(@PathVariable int id) {
-//        System.out.println("ok");
-//        User footballPlayers = userService.findById(id);
-//        if (footballPlayers==null) {
-//            return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
-//        }
-//        return new ResponseEntity<User>(footballPlayers, HttpStatus.OK);
-//    }
 
     @ResponseBody
     @RequestMapping(value = "/api/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -74,7 +60,6 @@ public class ApiController {
             userService.save(user1);
             return new ResponseEntity<Void>(HttpStatus.OK);
         }
-
         return new ResponseEntity<Void>(HttpStatus.FAILED_DEPENDENCY);
     }
 
@@ -88,7 +73,6 @@ public class ApiController {
             userService.deleteById(id);
             return new ResponseEntity<User>(footballPlayer, HttpStatus.OK);
         }
-
     }
 
     @ResponseBody
@@ -112,6 +96,4 @@ public class ApiController {
         userService.save(originUser);
         return new ResponseEntity<User>(originUser, HttpStatus.OK);
     }
-
-
 }
