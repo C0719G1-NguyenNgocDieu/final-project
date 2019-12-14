@@ -13,7 +13,7 @@ public class Category {
     private Long id;
 
     @OneToMany
-    @JoinColumn(name = "blog")
+    @JoinColumn(name = "category")
     private List<Blog> blog;
 
     private String nameCategory;

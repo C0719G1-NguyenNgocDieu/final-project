@@ -9,27 +9,25 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "category")
-
-    private String nameCategory;
+    @Column(columnDefinition = "TEXT")
+    private String title;
 
     public Blog() {
     }
 
-    public Blog(String nameCategory) {
-        this.nameCategory = nameCategory;
+    public Blog(String title) {
+        this.title = title;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getNameCategory() {
-        return nameCategory;
+    public String getTitle() {
+        return title;
     }
 
-    public void setNameCategory(String nameCategory) {
-        this.nameCategory = nameCategory;
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
