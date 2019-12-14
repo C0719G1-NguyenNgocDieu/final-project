@@ -24,21 +24,6 @@ public class CaseStudyApplication {
 		SpringApplication.run(CaseStudyApplication.class, args);
 	}
 
-
-	@Bean
-	public UserDetailsService userDetailsService(){
-		return new UserDetailsServiceImpl();
-	}
-
-	@Bean
-	public UserService userService(){
-		return new UserServiceImpl();
-	}
-
-	@Bean
-	public RoleService roleService(){
-		return new RoleServiceImpl();
-	}
 	@Configuration
 	class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
 
